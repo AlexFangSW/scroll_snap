@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+$padding_gap: 1rem;
+$card_width: 10rem * 2;
+$scroll_padding: calc(50vw - $card_width / 2); // 要不斷改變的還是用 calc() 來寫
+body {
+  display: grid;
+  grid-auto-rows: min-content;
+  min-height: 100vh;
+  background-color: rgb(44, 44, 44);
+  .header {
+    max-width: 100vw;
+    height: fit-content;
+    color: white;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    padding: $padding_gap;
+    background-color: black;
+    font-weight: 800;
+  }
+  .container {
+    display: grid;
+    grid-auto-flow: column; // 每個div都是一個column
+    border: 2px solid hotpink;
+    width: 100vw;
+    overflow-x: scroll;
+    overscroll-behavior-inline: contain;
+    padding: $padding_gap;
+    padding-inline: $scroll_padding;
+    gap: $padding_gap;
+    // Scroll Snap
+    scroll-snap-type: inline mandatory; // inline == x
+    scroll-padding-inline: $scroll_padding; // "scroll padding" needs to be used with "padding" to take effect.
+
+    .box {
+      background-color: black;
+      color: white;
+      min-width: $card_width;
+      padding: $padding_gap;
+      border-radius: 3px;
+      font-size: 0.7rem;
+      border: 2px solid limegreen;
+      // Where to snap to
+      scroll-snap-align: start;
+      &:not(.focus) {
+        opacity: 0.2;
+      }
+    }
+  }
+}
